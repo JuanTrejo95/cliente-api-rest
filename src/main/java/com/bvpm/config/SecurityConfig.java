@@ -1,6 +1,12 @@
 package com.bvpm.config;
 
 import com.bvpm.security.JwtAuthenticationFilter;
+
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,4 +49,22 @@ public class SecurityConfig {
 
         return http.build();
     }
+    
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+            // Agrega el requisito de seguridad global a todos los endpoints en la interfaz
+            .addSecurityItem(new SecurityRequirement().addList("BearerAuth"))
+            // Define cómo funciona el esquema de seguridad (JWT Bearer)
+            .components(new Components()
+                .addSecuritySchemes("BearerAuth",
+                    new SecurityScheme()
+                        .name("BearerAuth")
+                        .type(SecurityScheme.Type.HTTP)
+                        .scheme("bearer")
+                        .bearerFormat("JWT")
+                )
+            );
+    }
+    
 }
