@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/api/v1/clientes") 
 @Tag(name = "Cliente", description = "Endpoints para la gestión de clientes en el sistema")
 public class ClienteController {
 
@@ -32,13 +32,13 @@ public class ClienteController {
     @Operation(summary = "Listar clientes activos", description = "Retorna una lista de todos los clientes que no han sido inhabilitados")
     @GetMapping("/all")
     public ResponseEntity<List<ClienteDTO>> obtenerTodosHabilitados() {
-        return ResponseEntity.ok((service.listarHabilitados()));
+        return ResponseEntity.ok(service.listarHabilitados());
     }
     
     @Operation(summary = "Buscar cliente por ID", description = "Obtiene los detalles de un cliente específico mediante su identificador único")
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> obtenerTodosHabilitadosPorId(@PathVariable Long id) {
-        return ResponseEntity.ok((service.buscarClientePorId(id)));
+    public ResponseEntity<ClienteDTO> obtenerClientePorId(@PathVariable Long id) { 
+        return ResponseEntity.ok(service.buscarClientePorId(id));
     }
     
     @Operation(summary = "Actualizar cliente", description = "Modifica los datos de un cliente existente. Es una operación idempotente")
