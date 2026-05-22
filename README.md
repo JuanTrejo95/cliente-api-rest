@@ -21,7 +21,7 @@ El proyecto sigue una arquitectura por capas para separar responsabilidades de m
 4. **Repository:** Abstracción de acceso a datos de forma segura.
 5. **DTO (Data Transfer Object):** Implementación para desacoplar las entidades de la base de datos de la capa de presentación, evitando la exposición directa del modelo de datos.
 
-## 🔒 Seguridad y Robustez (Nivel Senior)
+## 🔒 Seguridad y Robustez
 * **Autenticación Stateless con JWT:** Implementación de tokens firmados digitalmente mediante el algoritmo HMAC-SHA256 con claves codificadas en Base64. El servidor no mantiene sesión en memoria, optimizando el rendimiento para arquitecturas de microservicios.
 * **Filtros Personalizados:** Intercepción de cabeceras HTTP mediante un esquema `Bearer Token` inyectado directamente en el `SecurityContextHolder` de Spring.
 * **Validaciones de Entrada:** Uso de `@Valid` para asegurar la integridad de los datos en el payload.
